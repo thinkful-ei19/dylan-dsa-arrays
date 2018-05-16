@@ -18,13 +18,6 @@ class MyArray {
     this.length++;
   }
 
-  get(index) {
-    if (index < 0 || index >= this.length) {
-      throw new Error('Index error');
-    }
-    return memory.get(this.ptr + index);
-  }
-
   _resize(size) {
     const oldPtr = this.ptr;
     this.ptr = memory.allocate(size);
@@ -33,6 +26,14 @@ class MyArray {
     }
     memory.copy(this.ptr, oldPtr, this.length);
     memory.free(oldPtr);
+    this._capacity = size;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index error');
+    }
+    return memory.get(this.ptr + index);
   }
 
   insert(index, value) {
