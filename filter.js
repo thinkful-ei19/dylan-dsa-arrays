@@ -1,10 +1,8 @@
 function filterArray(arr) {
   const filteredArray = [];
-  arr.forEach(x => {
-    if (x >= 5) {
-      filteredArray.push(x);
-    }
-  });
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= 5) filteredArray.push(arr[i]);
+  }
   return filteredArray;
 }
 

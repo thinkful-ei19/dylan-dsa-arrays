@@ -44,9 +44,7 @@ function setToZero2(arr) {
 
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
-      if (rows.includes(i) || cols.includes(j)) {
-        arr[i][j] = 0;
-      }
+      if (rows.includes(i) || cols.includes(j)) arr[i][j] = 0;
     }
   }
 
