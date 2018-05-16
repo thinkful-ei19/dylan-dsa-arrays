@@ -1,18 +1,20 @@
-import Memory from './memory';
+const Memory = require('./memory');
 
-class Array {
+let memory = new Memory();
+
+class MyArray {
   constructor() {
     this.length = 0;
     this._capacity = 0;
-    this.ptr = Memory.allocate(this.length);
+    this.ptr = memory.allocate(this.length);
   }
 
   push(value) {
     if (this.length >= this._capacity) {
-      this._resize((this.length + 1) * Array.SIZE_RATIO);
+      this._resize((this.length + 1) * MyArray.SIZE_RATIO);
     }
 
-    Memory.set(this.ptr + this.length, value);
+    memory.set(this.ptr + this.length, value);
     this.length++;
   }
 
@@ -20,17 +22,17 @@ class Array {
     if (index < 0 || index >= this.length) {
       throw new Error('Index error');
     }
-    return Memory.get(this.ptr + index);
+    return memory.get(this.ptr + index);
   }
 
   _resize(size) {
     const oldPtr = this.ptr;
-    this.ptr = Memory.allocate(size);
+    this.ptr = memory.allocate(size);
     if (this.ptr === null) {
       throw new Error('Out of memory');
     }
-    Memory.copy(this.ptr, oldPtr, this.length);
-    Memory.free(oldPtr);
+    memory.copy(this.ptr, oldPtr, this.length);
+    memory.free(oldPtr);
   }
 
   insert(index, value) {
@@ -39,11 +41,11 @@ class Array {
     }
 
     if (this.length >= this._capacity) {
-      this._resize((this.length + 1) * Array.SIZE_RATIO);
+      this._resize((this.length + 1) * MyArray.SIZE_RATIO);
     }
 
-    Memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
-    Memory.set(this.ptr + index, value);
+    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
+    memory.set(this.ptr + index, value);
     this.length++;
   }
 
@@ -51,7 +53,7 @@ class Array {
     if (this.length === 0) {
       throw new Error('Index error');
     }
-    const value = Memory.get(this.ptr + this.length - 1);
+    const value = memory.get(this.ptr + this.length - 1);
     this.length--;
     return value;
   }
@@ -60,12 +62,12 @@ class Array {
     if (index < 0 || index >= this.length) {
       throw new Error('Index error');
     }
-    Memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
+    memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
     this.length--;
   }
 
 }
 
-Array.SIZE_RATIO = 3;
+MyArray.SIZE_RATIO = 3;
 
-module.exports = Array;
+module.exports = MyArray;
