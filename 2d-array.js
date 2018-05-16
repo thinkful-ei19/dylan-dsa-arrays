@@ -28,7 +28,32 @@ function setToZero(arr) {
   return arr;
 }
 
-console.log(setToZero([
+function setToZero2(arr) {
+
+  const rows = [];
+  const cols = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 0) {
+        rows.push(i);
+        cols.push(j);
+      }
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (rows.includes(i) || cols.includes(j)) {
+        arr[i][j] = 0;
+      }
+    }
+  }
+
+  return arr;
+}
+
+console.log(setToZero2([
   [1, 0, 1, 1, 0],
   [0, 1, 1, 1, 0],
   [1, 1, 1, 1, 1],
