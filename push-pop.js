@@ -9,9 +9,19 @@ function main() {
 
   //add an item to the array
 
-  arr.push('tauhida');
-  console.log(arr[0]);
-  console.log(arr.get(0));
+  arr.push(3);
+  arr.push(4);
+  arr.push(5);
+  arr.push(6);
+  arr.push(7);
+  arr.push(8);
+  arr.pop();
+  arr.pop();
+  arr.pop();
+
+  // arr.push('tauhida');
+  console.log(arr);
+  // console.log(arr.get(0));
 }
 
 main();

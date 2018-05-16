@@ -12,4 +12,20 @@ function computeProducts(arr) {
   return newArr;
 }
 
-console.log(computeProducts([1, 3, 9, 4]));
+function computeProducts2(arr) {
+  const newArr = [];
+  let product = 1;
+  for (let i = 0; i < arr.length; i++) {
+    product *= arr[i];
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    let ind = product / arr[i];
+    newArr.push(ind);
+  }
+
+  return newArr;
+
+}
+
+console.log(computeProducts2([1, 3, 9, 4]));

@@ -16,4 +16,25 @@ function removeCharacters(str, remove) {
   return newStr;
 }
 
-console.log(removeCharacters('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
+function removeCharacters2(str, remove) {
+
+  const letters = {};
+  let newStr = '';
+
+  for (let i = 0; i < remove.length; i++) {
+    letters[remove[i]] = i;
+  }
+
+  for (let i = 0; i < str.length; i++) {
+    if (!(str[i] in letters)) {
+      newStr += str[i];
+    }
+  }
+
+  return newStr;
+
+}
+
+//O(n^2)
+
+console.log(removeCharacters2('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
