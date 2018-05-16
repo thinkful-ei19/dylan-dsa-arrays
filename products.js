@@ -20,8 +20,7 @@ function computeProducts2(arr) {
   }
 
   for (let i = 0; i < arr.length; i++) {
-    let ind = product / arr[i];
-    newArr.push(ind);
+    newArr.push(product / arr[i]);
   }
 
   return newArr;
