@@ -1,5 +1,5 @@
 function urlify(str) {
-  return str.split(' ').join('%20');
+  return str.replace(/\s/g, '%20');
 }
 
 console.log(urlify('tauhida parveen'));
